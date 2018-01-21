@@ -1,0 +1,68 @@
+---
+title       : Bitcoin Advice App
+subtitle    : note this is NOT investment advice
+author      : Larry Colucci
+job         : Data Science Track Course 9 Final Project
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+## The App
+
+<div id="bg">
+  <img src="assets/img/BCAPP.png" alt="">
+</div>  
+This is a screenshot of my app.
+It takes user input  on the current Bitcoin price, and user generated predictions of the future trends
+  - overall increase/decrease
+  - percent change in above direction
+
+--- slide 3
+
+## The Secret Sauce
+
+The key to this app is using a "simple interest" formula in the R code.
+
+If you think that the price of Bitcoin is going to go up, we take the price you entered and multiply that times 1 + the percentage increase you specified, as in the Example Below:
+
+My server side calculation  
+ifelse(input$dataset=='up',  
+  paste0('Current Price: ', input$UserBitPrice,'      Expected price: ',(input$perct/100)*input$UserBitPrice+input$UserBitPrice),  
+ paste0('Current Price: ', input$UserBitPrice,'      Expected price: ',input$UserBitPrice-(input$perct/100)*input$UserBitPrice))
+
+--- slide 4
+
+```{r ECHO=TRUE }
+pred <- 'up'
+price <- 12000
+pctchg <- 10
+
+ifelse(pred=='up',
+  paste0('Current Price: ', price,'      Expected price: ',(pctchg/100)*price+price),
+  paste0('Current Price: ', price,'      Expected price: ',price-(pctchg/100)*price))
+```
+```{r}
+pred <- 'down'
+price <- 19999
+pctchg <- 37
+
+ifelse(pred=='up',
+  paste0('Current Price: ', price,'      Expected price: ',(pctchg/100)*price+price),
+  paste0('Current Price: ', price,'      Expected price: ',price-(pctchg/100)*price))
+```
+
+
+--- slide 5
+
+## Future Enhancements
+
+- Live feed of Bitcoin price
+- Crowdsourced opinions on Future price behavior
+- Charts, charts, charts!!!
+- Figure out how to make slidify text smaller
+- Upgraded snacks
+  - pizza bagels
+  - bagel pizzas

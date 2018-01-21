@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bitcoin Advice App</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Bitcoin Advice App">
+  <meta name="author" content="Larry Colucci">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Bitcoin Advice App</h1>
+    <h2>note this is NOT investment advice</h2>
+    <p>Larry Colucci<br/>Data Science Track Course 9 Final Project</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>The App</h2>
+  </hgroup>
+  <article data-timings="">
+    <div id="bg">
+  <img src="assets/img/BCAPP.png" alt="">
+</div>  
+
+<p>This is a screenshot of my app.
+It takes user input  on the current Bitcoin price, and user generated predictions of the future trends</p>
+
+<ul>
+<li>overall increase/decrease</li>
+<li>percent change in above direction</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>The Secret Sauce</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The key to this app is using a &quot;simple interest&quot; formula in the R code.</p>
+
+<p>If you think that the price of Bitcoin is going to go up, we take the price you entered and multiply that times 1 + the percentage increase you specified, as in the Example Below:</p>
+
+<p>My server side calculation<br>
+ifelse(input$dataset==&#39;up&#39;,<br>
+  paste0(&#39;Current Price: &#39;, input$UserBitPrice,&#39;      Expected price: &#39;,(input$perct/100)*input$UserBitPrice+input$UserBitPrice),<br>
+ paste0(&#39;Current Price: &#39;, input$UserBitPrice,&#39;      Expected price: &#39;,input$UserBitPrice-(input$perct/100)*input$UserBitPrice))</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">pred &lt;- &#39;up&#39;
+price &lt;- 12000
+pctchg &lt;- 10
+
+ifelse(pred==&#39;up&#39;,
+  paste0(&#39;Current Price: &#39;, price,&#39;      Expected price: &#39;,(pctchg/100)*price+price),
+  paste0(&#39;Current Price: &#39;, price,&#39;      Expected price: &#39;,price-(pctchg/100)*price))
+</code></pre>
+
+<pre><code>## [1] &quot;Current Price: 12000      Expected price: 13200&quot;
+</code></pre>
+
+<pre><code class="r">pred &lt;- &#39;down&#39;
+price &lt;- 19999
+pctchg &lt;- 37
+
+ifelse(pred==&#39;up&#39;,
+  paste0(&#39;Current Price: &#39;, price,&#39;      Expected price: &#39;,(pctchg/100)*price+price),
+  paste0(&#39;Current Price: &#39;, price,&#39;      Expected price: &#39;,price-(pctchg/100)*price))
+</code></pre>
+
+<pre><code>## [1] &quot;Current Price: 19999      Expected price: 12599.37&quot;
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Future Enhancements</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Live feed of Bitcoin price</li>
+<li>Crowdsourced opinions on Future price behavior</li>
+<li>Charts, charts, charts!!!</li>
+<li>Figure out how to make slidify text smaller</li>
+<li>Upgraded snacks
+
+<ul>
+<li>pizza bagels</li>
+<li>bagel pizzas</li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='The App'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='The Secret Sauce'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='NA'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Future Enhancements'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
